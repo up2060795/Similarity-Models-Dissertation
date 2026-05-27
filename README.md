@@ -56,45 +56,63 @@ Profile name: student-project
 ```
 Finally, add `AWS_PROFILE=student-project` into your `.env` and run `./aws-creds-update.sh` to login. 
 
+This repository contains the implementation code for an MSc dissertation investigating embedding-based product similarity modelling using retail basket transaction data and product metadata.
+
+The project compares behavioural and semantic representation learning approaches, including:
+
+- Product2Vec
+- Baseline Sentence Transformer
+- Fine-tuned Sentence Transformer
+
+---
 ## Project Structure
 
 ```bash
 .
-├── Dockerfile # To be used to containerise the code (likely will not be used)
-├── Makefile # Wraps up build / install code to make it easier to install dependencies. 
-├── README.md # This file! 
-├── pull_request_template.md # A nice template for pull requests
-├── pyproject.toml # Defines all the packages that we will need for the application 
-├── uv.lock # Represents the exact versions of everything that UV 
-├── src # Root folder for the codebase
-│   ├── notebooks 
-│   │   └── initial_notebook.ipynb # Poster plots - would recommend re-naming and commiting this. 
-│   └── similarity_model_project # Root folder for the similarity models codebase
-│       ├── __init__.py # needed to tell python this is a packag
-│       ├── main.py # Main entrypoint for the codebase
-│       ├── py.typed # Tells type checkers we will expose type hints for this package
-│       ├── evaluation
-│       │   ├── __init__.py
-│       │   └── evaluate.py # Code to perform evaluation of different similarity models
-│       ├── orchestration
-│       │   ├── __init__.py
-│       │   └── orchestrate.py # Code to orchestrate the overall experiments (i.e. run for each model)
-│       ├── preprocess
-│       │   ├── __init__.py
-│       │   ├── load_data.py # Load data from AWS into a polars dataframe given a date range
-│       │   ├── preprocess_inference.py # Preprocess the data for inference (i.e. generating similarity predictions)
-│       │   ├── preprocess_product2vec.py  # Preprocess the data for training the product2vec model (skip-gram of SKUs)
-│       │   └── preprocess_transformer.py # Preprocess the data for finetuning the transformer (triplet of product descriptions)
-│       ├── similairity
-│       │   ├── __init__.py
-│       │   ├── base.py # Base class for similairty models (expose methods such as .fit, .predict) 
-│       │   ├── sentence_transformer.py # sentence transformer implementation of the base class
-│       │   ├── finetuned_sentence_transformer.py # implementation of the base class to fine-tune the sentence transformer
-│       │   └── product2vec.py # Implementation of the baseclass to train the product2vec model
-│       └── utils # Folder to add utility functions to 
-│           └── __init__.py
-└── tests
-    └── test_example.py
+├── .github/                            # GitHub configuration files and repository workflows.
+├── src/
+│   └── similarity_model_project/
+│       ├── evaluation/
+│       │   ├── evaluate.py             # Runs retrieval evaluation experiments across models.
+│       │   ├── metrics.py              # Computes quantitative retrieval and ranking metrics.
+│       │   ├── model_comparison.py     # Compares performance between embedding models.
+│       │   └── ranking.py              # Generates ranked nearest-neighbour retrieval results.
+│       │
+│       ├── orchestration/
+│       │   ├── data.py                 # Coordinates dataset loading and shared data access.
+│       │   ├── orchestrate.py          # Main orchestration logic for the end-to-end pipeline.
+│       │   ├── preprocessing.py        # Executes preprocessing workflows across experiments.
+│       │   ├── reporting.py            # Generates experiment summaries and reporting outputs.
+│       │   ├── setup.py                # Configures experiment environments and runtime settings.
+│       │   └── training.py             # Handles model training and fine-tuning procedures.
+│       │
+│       ├── preprocess/
+│       │   ├── load_data.py            # Loads transactional basket and metadata datasets.
+│       │   ├── preprocess_inference.py # Prepares datasets for similarity inference evaluation.
+│       │   ├── preprocess_product2vec.py   # Preprocesses transactional data for Product2Vec.
+│       │   └── preprocess_transformer.py   # Preprocesses text data for transformers training.
+│       │
+│       ├── similarity/
+│       │   ├── base.py                 # Defines the shared similarity model interface.
+│       │   ├── product2vec.py          # Implements the Product2Vec embedding model.
+│       │   └── sentence_transformer.py # Implements Sentence Transformer similarity models.
+│       │
+│       ├── utils/                      # Shared utility and helper functions used across modules.
+│       ├── __init__.py                 # Marks the package as a Python module.
+│       └── py.typed                    # Indicates support for static type checking.
+│
+├── tests/
+│   └── test_smoke.py                   # Basic smoke tests for validating project functionality.
+│
+├── main.py                             # Main entry point for running the dissertation pipeline.
+├── plot_metrics.py                     # Generates plots and visualisations for evaluation metrics.
+├── pyproject.toml                      # Defines project dependencies and Python package settings.
+├── uv.lock                             # Locks exact dependency versions for reproducibility.
+├── README.md                           # Repository overview and project documentation.
+├── Dockerfile                          # Container configuration for reproducible execution.
+├── Makefile                            # Convenience commands for common development tasks.
+└── .env.example                        # Example environment variable configuration file.
+
 ````
 
 ## Getting Started
