@@ -58,6 +58,8 @@ Finally, add `AWS_PROFILE=student-project` into your `.env` and run `./aws-creds
 
 This repository contains the implementation code for an MSc dissertation investigating embedding-based product similarity modelling using retail basket transaction data and product metadata.
 
+# Similarity Models Dissertation
+
 The project compares behavioural and semantic representation learning approaches, including:
 
 - Product2Vec
