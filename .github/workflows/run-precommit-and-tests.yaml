@@ -1,0 +1,42 @@
+---
+name: CI - pre-commit and tests
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  run:
+    name: Run pre-commit and tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python using pyproject.toml
+      uses: actions/setup-python@v5
+      with:
+        # This tells setup-python to look for the version in pyproject.toml
+        python-version-file: 'pyproject.toml'
+
+    - name: Install make
+      run: sudo apt-get update && sudo apt-get install -y make
+
+    - name: Install requirements
+      run: make install 
+    
+    - name: Run pre-commit
+      run: make lint
+    
+    - name: Run tests
+      run: make test

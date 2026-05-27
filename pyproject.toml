@@ -1,0 +1,131 @@
+[project]
+name = "similarity_model_project"
+version = "0.1.1"
+description = "A template repository following best practises for data science projects."
+
+authors = [
+  { name = "Teresa Joseph", email = "teresa.joseph@artefact.com" }
+]
+
+requires-python = "==3.12.10"
+
+dependencies = [
+  "jupyter>=1.1.1",
+  "matplotlib>=3.10.8",
+  "plotly>=6.5.2",
+  "polars>=1.37.1",
+  "seaborn>=0.13.2",
+  "numpy>=1.26,<3.0",
+  "scipy>=1.11,<2.0",
+  "gensim>=4.3,<5.0",
+  "python-dotenv>=1.0,<2.0",
+  "fsspec>=2024.0.0",
+  "s3fs>=2024.0.0",
+  "sentence-transformers>=5.4.1",
+  "scikit-learn>=1.8.0",
+  "tqdm>=4.67.3",
+  "datasets>=4.8.5",
+  "accelerate>=1.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0,<9.0",
+  "pre-commit>=3.3,<4.0",
+]
+
+[tool.uv]
+environments = [
+  "sys_platform == 'darwin'",
+  "sys_platform == 'linux'",
+]
+
+# -----------------------------
+# Ruff Linting Configuration
+# -----------------------------
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+exclude = [
+  ".bzr",
+  ".direnv",
+  ".eggs",
+  ".git",
+  ".ruff_cache",
+  ".svn",
+  ".tox",
+  ".venv",
+  "__pypackages__",
+  "_build",
+  "buck-out",
+  "build",
+  "dist",
+  "node_modules",
+  "venv",
+  "requirements.txt",
+  "requirements-dev.txt",
+]
+
+[tool.ruff.lint]
+select = [
+  "E",
+  "W",
+  "F",
+  "I",
+  "N",
+  "D",
+  "ANN",
+  "Q",
+  "RET",
+  "ARG",
+  "PTH",
+  "PD",
+]
+
+ignore = [
+  "D100",
+  "D203",
+  "D213",
+  "PTH123",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = [
+  "D102",
+  "D103",
+  "D104",
+  "ANN201",
+  "ANN202",
+]
+
+"__init__.py" = [
+  "D104",
+]
+
+"src/notebooks/**/*.ipynb" = [
+  "D103",
+  "ANN001",
+  "ANN201",
+  "ANN401",
+  "PTH103",
+  "PTH109",
+  "PTH110",
+  "PTH118",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["similarity_model_project"]
+
+# -----------------------------
+# Build System
+# -----------------------------
+[build-system]
+requires = ["uv_build>=0.9.9,<0.10.0"]
+build-backend = "uv_build"
