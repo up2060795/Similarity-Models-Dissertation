@@ -1,3 +1,61 @@
+# Similarity Models Dissertation
+
+The project compares behavioural and semantic representation learning approaches, including:
+
+- Product2Vec
+- Baseline Sentence Transformer
+- Fine-tuned Sentence Transformer
+
+---
+## Project Structure
+
+```bash
+.
+├── .github/                            # GitHub configuration files and repository workflows.
+├── src/
+│   └── similarity_model_project/
+│       ├── evaluation/
+│       │   ├── evaluate.py             # Runs retrieval evaluation experiments across models.
+│       │   ├── metrics.py              # Computes quantitative retrieval and ranking metrics.
+│       │   ├── model_comparison.py     # Compares performance between embedding models.
+│       │   └── ranking.py              # Generates ranked nearest-neighbour retrieval results.
+│       │
+│       ├── orchestration/
+│       │   ├── data.py                 # Coordinates dataset loading and shared data access.
+│       │   ├── orchestrate.py          # Main orchestration logic for the end-to-end pipeline.
+│       │   ├── preprocessing.py        # Executes preprocessing workflows across experiments.
+│       │   ├── reporting.py            # Generates experiment summaries and reporting outputs.
+│       │   ├── setup.py                # Configures experiment environments and runtime settings.
+│       │   └── training.py             # Handles model training and fine-tuning procedures.
+│       │
+│       ├── preprocess/
+│       │   ├── load_data.py            # Loads transactional basket and metadata datasets.
+│       │   ├── preprocess_inference.py # Prepares datasets for similarity inference evaluation.
+│       │   ├── preprocess_product2vec.py   # Preprocesses transactional data for Product2Vec.
+│       │   └── preprocess_transformer.py   # Preprocesses text data for transformers training.
+│       │
+│       ├── similarity/
+│       │   ├── base.py                 # Defines the shared similarity model interface.
+│       │   ├── product2vec.py          # Implements the Product2Vec embedding model.
+│       │   └── sentence_transformer.py # Implements Sentence Transformer similarity models.
+│       │
+│       ├── utils/                      # Shared utility and helper functions used across modules.
+│       ├── __init__.py                 # Marks the package as a Python module.
+│       └── py.typed                    # Indicates support for static type checking.
+│
+├── tests/
+│   └── test_smoke.py                   # Basic smoke tests for validating project functionality.
+│
+├── main.py                             # Main entry point for running the dissertation pipeline.
+├── plot_metrics.py                     # Generates plots and visualisations for evaluation metrics.
+├── pyproject.toml                      # Defines project dependencies and Python package settings.
+├── uv.lock                             # Locks exact dependency versions for reproducibility.
+├── README.md                           # Repository overview and project documentation.
+├── Dockerfile                          # Container configuration for reproducible execution.
+├── Makefile                            # Convenience commands for common development tasks.
+└── .env.example                        # Example environment variable configuration file.
+
+````
 # similarity-models-student-project
 
 This is the repository for the student project on similarity models. 
@@ -57,65 +115,6 @@ Profile name: student-project
 Finally, add `AWS_PROFILE=student-project` into your `.env` and run `./aws-creds-update.sh` to login. 
 
 This repository contains the implementation code for an MSc dissertation investigating embedding-based product similarity modelling using retail basket transaction data and product metadata.
-
-# Similarity Models Dissertation
-
-The project compares behavioural and semantic representation learning approaches, including:
-
-- Product2Vec
-- Baseline Sentence Transformer
-- Fine-tuned Sentence Transformer
-
----
-## Project Structure
-
-```bash
-.
-├── .github/                            # GitHub configuration files and repository workflows.
-├── src/
-│   └── similarity_model_project/
-│       ├── evaluation/
-│       │   ├── evaluate.py             # Runs retrieval evaluation experiments across models.
-│       │   ├── metrics.py              # Computes quantitative retrieval and ranking metrics.
-│       │   ├── model_comparison.py     # Compares performance between embedding models.
-│       │   └── ranking.py              # Generates ranked nearest-neighbour retrieval results.
-│       │
-│       ├── orchestration/
-│       │   ├── data.py                 # Coordinates dataset loading and shared data access.
-│       │   ├── orchestrate.py          # Main orchestration logic for the end-to-end pipeline.
-│       │   ├── preprocessing.py        # Executes preprocessing workflows across experiments.
-│       │   ├── reporting.py            # Generates experiment summaries and reporting outputs.
-│       │   ├── setup.py                # Configures experiment environments and runtime settings.
-│       │   └── training.py             # Handles model training and fine-tuning procedures.
-│       │
-│       ├── preprocess/
-│       │   ├── load_data.py            # Loads transactional basket and metadata datasets.
-│       │   ├── preprocess_inference.py # Prepares datasets for similarity inference evaluation.
-│       │   ├── preprocess_product2vec.py   # Preprocesses transactional data for Product2Vec.
-│       │   └── preprocess_transformer.py   # Preprocesses text data for transformers training.
-│       │
-│       ├── similarity/
-│       │   ├── base.py                 # Defines the shared similarity model interface.
-│       │   ├── product2vec.py          # Implements the Product2Vec embedding model.
-│       │   └── sentence_transformer.py # Implements Sentence Transformer similarity models.
-│       │
-│       ├── utils/                      # Shared utility and helper functions used across modules.
-│       ├── __init__.py                 # Marks the package as a Python module.
-│       └── py.typed                    # Indicates support for static type checking.
-│
-├── tests/
-│   └── test_smoke.py                   # Basic smoke tests for validating project functionality.
-│
-├── main.py                             # Main entry point for running the dissertation pipeline.
-├── plot_metrics.py                     # Generates plots and visualisations for evaluation metrics.
-├── pyproject.toml                      # Defines project dependencies and Python package settings.
-├── uv.lock                             # Locks exact dependency versions for reproducibility.
-├── README.md                           # Repository overview and project documentation.
-├── Dockerfile                          # Container configuration for reproducible execution.
-├── Makefile                            # Convenience commands for common development tasks.
-└── .env.example                        # Example environment variable configuration file.
-
-````
 
 ## Getting Started
 
