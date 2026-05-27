@@ -56,6 +56,62 @@ The project compares behavioural and semantic representation learning approaches
 └── .env.example                        # Example environment variable configuration file.
 
 ````
+## Getting Started
+
+Follow these steps to set up and run the project.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY-NAME.git
+cd YOUR-REPOSITORY-NAME
+```
+
+### 2. Create a Virtual Environment
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Configure Environment Variables
+
+Copy the example environment file:
+
+```bash
+cp .env.example .env
+```
+
+Then edit `.env` with the required local or AWS configuration.
+
+### 5. Run the Main Pipeline
+
+```bash
+python main.py
+```
+
+### 6. Generate Evaluation Plots
+
+```bash
+python plot_metrics.py
+```
+
+### 7. Run Tests
+
+```bash
+pytest
+```
+
+## Data Availability
+
+The original retail transaction data and product metadata are not included in this repository due to privacy, commercial, and file-size restrictions.
+
 # similarity-models-student-project
 
 This is the repository for the student project on similarity models. 
